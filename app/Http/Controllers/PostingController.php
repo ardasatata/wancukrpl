@@ -13,4 +13,6 @@ class PostingController extends Controller
     	$id=Auth::id();
 
     }
+
+    public function
 }

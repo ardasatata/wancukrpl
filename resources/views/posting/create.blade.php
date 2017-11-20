@@ -8,7 +8,7 @@
                     <div class="panel-heading">Dashboard</div>
 
                     <div class="panel-body">
-                        <form action = "/create" method = "post">
+                        <form action = "/post/posting" method = "post">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
 
                             <table>

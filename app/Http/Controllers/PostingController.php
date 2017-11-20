@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Posting;
+use Illuminate\Support\Facades\Auth;
 
 class PostingController extends Controller
 {
@@ -34,6 +35,6 @@ class PostingController extends Controller
 
     public function createForm(){
 
-
+        return view('posting.create');
     }
 }

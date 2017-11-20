@@ -8,11 +8,16 @@ use App\Posting;
 
 class PostingController extends Controller
 {
-    public function createPost(Request $request){
+    public function create(Request $request){
 
     	$id=Auth::id();
 
+
+
     }
 
-    public function
+    public function createForm(){
+
+
+    }
 }

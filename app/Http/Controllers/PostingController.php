@@ -37,4 +37,9 @@ class PostingController extends Controller
 
         return view('posting.create');
     }
+
+    public function viewPost(){
+        
+        return view('posting.view');
+    }
 }

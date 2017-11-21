@@ -40,6 +40,9 @@ class PostingController extends Controller
 
     public function viewPost($post_id){
 
-        return view('posting.view',['id'=>$post_id]);
+        $post = Posting::findOrFail($post_id);
+
+
+        return view('posting.view',['post'=>$post]);
     }
 }

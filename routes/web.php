@@ -22,4 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/post/create', 'PostingController@createForm');
 Route::post('/post/posting', 'PostingController@create');
 
-Route::get('/post/{post_id}', 'PostingController@view');
+Route::get('/post/{post_id}', 'PostingController@viewPost');

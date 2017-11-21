@@ -38,8 +38,8 @@ class PostingController extends Controller
         return view('posting.create');
     }
 
-    public function viewPost(){
-        
-        return view('posting.view');
+    public function viewPost($post_id){
+
+        return view('posting.view',['id'=>$post_id]);
     }
 }

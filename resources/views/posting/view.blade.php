@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
 
-                        <h1>{{$id}}</h1>
+                        {{$post}}
 
                     </div>
                 </div>

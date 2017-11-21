@@ -15,16 +15,19 @@
                             <table>
                                 <tr>
                                     <td>Judul Posting</td>
-                                    <td><input type='text' name='Judul Post' /></td>
+                                    <td><input type='text' name='Judul' /></td>
                                 </tr>
+                                <br>
 
                                 <tr>
                                     <td>Caption</td>
+                                    <br>
                                     <td><input type='text' name='Caption' /></td>
                                 </tr>
+
                                 <tr>
                                     <td colspan = '2'>
-                                        <input type = 'submit' value = "Add student"/>
+                                        <input type = 'submit' value = "Upload"/>
                                     </td>
                                 </tr>
                             </table>

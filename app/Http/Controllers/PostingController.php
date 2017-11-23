@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Posting;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class PostingController extends Controller
 {
@@ -23,6 +24,16 @@ class PostingController extends Controller
         //$posting->tipe_posting = $tipe;
         $posting->caption = $caption;
         $posting->user_id = $id;
+
+
+            $file = $request->file('fileUpload');
+
+            $filename = time().$request->input('fileUpload');
+
+            $file->move( public_path('/uploads/UserFiles/' . $filename ) );
+
+            $posting->media_path = $filename;
+
 
 
         $posting->save();

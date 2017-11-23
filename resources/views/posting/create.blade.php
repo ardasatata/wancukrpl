@@ -22,13 +22,21 @@
                                 <tr>
                                     <td>Caption</td>
                                     <br>
-                                    <td><input type='text' name='Caption' /></td>
+                                    <td>       <input type='text' name='Caption' />
+                                    </td>
                                 </tr>
 
-                                <label>Foto 1</label> : <input type="file" name="foto1"><br>
+                                <tr>
+                                    <td>
+                                        File : <input type="file" name="fileUpload"/>
+                                    </td>
+
+                                </tr>
+
+
 
                                 <tr>
-                                    <td colspan = '2'>
+                                    <td colspan = '2'><br>
                                         <input type = 'submit' value = "Upload"/>
                                     </td>
                                 </tr>

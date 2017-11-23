@@ -7,6 +7,7 @@ use App\User;
 use App\Posting;
 use Illuminate\Support\Facades\Auth;
 use Image;
+use Illuminate\Support\Facades\Storage;
 
 class PostingController extends Controller
 {
@@ -30,7 +31,7 @@ class PostingController extends Controller
 
             $filename = time().$request->input('fileUpload');
 
-            $file->move( public_path('/uploads/UserFiles/' . $filename ) );
+            Storage::disk('upload')->put($filename, $file);
 
             $posting->media_path = $filename;
 

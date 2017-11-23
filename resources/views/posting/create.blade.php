@@ -25,6 +25,8 @@
                                     <td><input type='text' name='Caption' /></td>
                                 </tr>
 
+                                <label>Foto 1</label> : <input type="file" name="foto1"><br>
+
                                 <tr>
                                     <td colspan = '2'>
                                         <input type = 'submit' value = "Upload"/>

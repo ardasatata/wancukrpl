@@ -8,10 +8,15 @@ use App\Posting;
 use Illuminate\Support\Facades\Auth;
 use Image;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PostingController extends Controller
 {
     public function create(Request $request){ //insert data
+
+        //dd($request->file('fileUpload'));
 
     	$id = Auth::id();
 
@@ -31,9 +36,12 @@ class PostingController extends Controller
 
             $filename = time().$request->input('fileUpload');
 
-            Storage::disk('upload')->put($filename, $file);
+            //file_put_contents($filename, $file);
 
-            $posting->media_path = $filename;
+
+            $path = Storage::disk('upload')->put($filename, $file);
+
+            $posting->media_path = $path;
 
 
 
@@ -54,7 +62,17 @@ class PostingController extends Controller
 
         $post = Posting::findOrFail($post_id);
 
+        $url = Storage::url($post->media_path);
 
-        return view('posting.view',['post'=>$post]);
+//        $url = Storage::temporaryUrl(
+//            $post->media_path, Carbon::now()->addMinutes(5)
+//        );
+
+        return view('posting.view',['post'=>$post , 'url'=>$url]);
+    }
+
+    public function likePost(){
+
+
     }
 }

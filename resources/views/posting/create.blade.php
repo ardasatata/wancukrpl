@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
 
-                        <form action = "/post/posting" method = "post">
+                        <form action = "/post/posting" method = "POST" enctype="multipart/form-data">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
 
                             <table>
@@ -28,7 +28,7 @@
 
                                 <tr>
                                     <td>
-                                        File : <input type="file" name="fileUpload"/>
+                                        File : <input type="file" id="fileUpload" name="fileUpload"/>
                                     </td>
 
                                 </tr>

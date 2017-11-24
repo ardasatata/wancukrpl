@@ -5,11 +5,20 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Posting Judul</div>
+                    <div class="panel-heading">{{$post->judul_posting}}</div>
 
                     <div class="panel-body">
 
-                        {{$post}}
+                        <table>
+                            <tr>
+                                {{$post->id_posting}}
+                                {{$post->caption}}
+
+                                <img style="max-width: 100%" src="{{ URL::to('storage/' . $post->media_path) }} ">
+
+                            </tr>
+
+                        </table>
 
                     </div>
                 </div>

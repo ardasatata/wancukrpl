@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Posting extends Model
 {
@@ -20,6 +21,6 @@ class Posting extends Model
 
     public function like(){
 
-        return $this->belongsToMany('User', 'likePosting', 'id_posting', 'user_id');
+        return $this->belongsToMany('App\User', 'likePosting', 'id_posting', 'user_id');
     }
 }

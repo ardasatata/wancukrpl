@@ -25,9 +25,9 @@ Route::post('/post/posting', 'PostingController@create')->middleware('auth');
 Route::get('/post/{post_id}', 'PostingController@viewPost')->name('viewPost'); //lihat post
 Route::get('/editpost/{post_id}', 'PostingController@viewPost')->middleware('auth'); //edit post
 
-Route::get('/mypost', 'PostingController@myPost')->middleware('auth')->name('myPost'); //edit post
+Route::get('/mypost', 'PostingController@myPost')->middleware('auth')->name('myPost'); //edit my post
 
-
+Route::get('/like/{post_id}', 'PostingController@likePost')->middleware('auth')->name('like'); //like post
 
 
 

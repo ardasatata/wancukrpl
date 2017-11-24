@@ -102,6 +102,11 @@ class PostingController extends Controller
 
         $url = Storage::url($post->media_path);
 
+        if ($post->user_id!=Auth::id()){
+            $post->view_count = $post->view_count + 1;
+            $post->save();
+        }
+
 //        $url = Storage::temporaryUrl(
 //            $post->media_path, Carbon::now()->addMinutes(5)
 //        );
@@ -118,8 +123,17 @@ class PostingController extends Controller
         return view('posting.mypost',['posting'=>$mypost]);
     }
 
-    public function likePost(){
+    public function likePost($post_id){
 
+        $id = Auth::id();
+
+        $post = Posting::findOrFail($post_id);
+
+        $post->like();
+
+        $post->like->save();
+
+        return back();
 
     }
 }

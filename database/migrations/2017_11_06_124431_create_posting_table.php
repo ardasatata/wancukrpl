@@ -23,8 +23,8 @@ class CreatePostingTable extends Migration
             $table->string('tipe_posting')->nullable();
             $table->string('media_path')->nullable();
             $table->text('caption')->nullable();
-            $table->integer('view_count')->nullable();
-            $table->integer('like_count')->nullable();
+            $table->integer('view_count')->default(0);
+            $table->integer('like_count')->default(0);
             $table->timestamps();
         });
     }

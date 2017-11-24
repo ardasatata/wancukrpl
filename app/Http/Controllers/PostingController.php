@@ -49,13 +49,51 @@ class PostingController extends Controller
 
         //setelah insert data langsung nampilin view dari postnya
 
-        // return view('posting_view',['post'=>$posting]);
+        return view('posting.view',['post'=>$posting]);
 
     }
 
     public function createForm(){
 
         return view('posting.create');
+    }
+
+    public function edit(Request $request){ //insert data
+
+
+        $id = Auth::id();
+
+        $judul = $request->input('Judul');
+        //$tipe = $request->input('tipe_posting');
+        $caption = $request->input('Caption');
+
+        $posting = new Posting;
+
+        $posting->judul_posting = $judul;
+        //$posting->tipe_posting = $tipe;
+        $posting->caption = $caption;
+        $posting->user_id = $id;
+
+
+        $file = $request->file('fileUpload');
+
+        $filename = time().$request->input('fileUpload');
+
+        //file_put_contents($filename, $file);
+
+
+        $path = Storage::disk('upload')->put($filename, $file);
+
+        $posting->media_path = $path;
+
+
+
+        $posting->save();
+
+        //setelah insert data langsung nampilin view dari postnya
+
+        // return view('posting_view',['post'=>$posting]);
+
     }
 
     public function viewPost($post_id){
@@ -69,6 +107,15 @@ class PostingController extends Controller
 //        );
 
         return view('posting.view',['post'=>$post , 'url'=>$url]);
+    }
+
+    public function myPost(){
+
+
+        $mypost = Posting::where('user_id', Auth::id())->get();
+
+
+        return view('posting.mypost',['posting'=>$mypost]);
     }
 
     public function likePost(){

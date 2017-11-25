@@ -14,6 +14,13 @@ class Posting extends Model
         'judul_posting', 'tipe_posting', 'media_path', 'caption' , 'user_id' ,
     ];
 
+    public static function myPost($user_id,$post_id){
+        if (Posting::where('user_id',$user_id)->where('id_posting',$post_id)->count()==1)
+            return true;
+        else
+            return false;
+    }
+
     public function user(){
 
     	return $this->belongsTo('User', 'id');

@@ -27,8 +27,15 @@
                                 </tr>
 
                                 <tr>
+                                    <td>Description</td>
+                                    <br>
+                                    <td>       <input type='text' name='description' value="{{$profile->description}}"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <td>
-                                        Foto : <input type="file" id="fotoProfil" name="fileUpload"/>
+                                        Foto : <input type="file" id="fotoProfil" name="fotoProfil"/>
                                     </td>
 
                                 </tr>

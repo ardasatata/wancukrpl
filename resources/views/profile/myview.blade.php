@@ -5,11 +5,15 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">My Profile</div>
+                    <div class="panel-heading">My Profile <a href="{{route('editProfile')}}">EDIT</a> </div>
 
                     <div class="panel-body">
 
-                        <a href="{{route('editProfile')}}">EDIT</a>
+                        <br>
+
+                        <img style="max-width: 100%" src="{{ URL::to($profile->profPic)}} ">
+
+                        <br>
 
                         <table>
                             <tr>
@@ -18,6 +22,10 @@
                                 {{$user->email}}
 
                                 {{$profile->profPic}}
+
+                                {{$profile->description}}
+
+
                             </tr>
 
                         </table>

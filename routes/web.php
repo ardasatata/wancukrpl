@@ -40,3 +40,7 @@ Route::get('user/{id}', 'ProfileController@viewProfile')->name('viewProfile'); /
 
 Route::get('edit/profile', 'ProfileController@editProfile')->name('editProfile'); //edit profile sendiri
 Route::post('/edit', 'ProfileController@edit')->middleware('auth');//post edit profile
+
+
+Route::get('/follow/{user_id}', 'FollowController@follow')->middleware('auth')->name('follow'); //Follow User
+Route::get('/unfollow/{user_id}', 'FollowController@unfollow')->middleware('auth')->name('unfollow'); //Unfollow User

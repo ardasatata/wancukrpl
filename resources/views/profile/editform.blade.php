@@ -15,20 +15,20 @@
                             <table>
                                 <tr>
                                     <td>Nama </td>
-                                    <td><input type='text' name='Judul' value="{{$user->name}}"/></td>
+                                    <td><input type='text' name='nama' value="{{$user->name}}"/></td>
                                 </tr>
                                 <br>
 
                                 <tr>
                                     <td>Email </td>
                                     <br>
-                                    <td>       <input type='text' name='Caption' value="{{$user->email}}"/>
+                                    <td>       <input type='text' name='email' value="{{$user->email}}"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        Foto : <input type="file" id="fileUpload" name="fileUpload"/>
+                                        Foto : <input type="file" id="fotoProfil" name="fileUpload"/>
                                     </td>
 
                                 </tr>

@@ -40,8 +40,19 @@ class ProfileController extends Controller
         return view('profile.editform',['profile'=>$profile , 'user'=>$user]);
     }
 
-    public function edit()
+    public function edit(Request $request)
     {
+        $id = Auth::id();
 
+        $profile = Profile::findOrFail($id);
+        $user = User::find($id);
+
+        //$profile->
+        $user->name = $request->input('nama');
+        $user->email = $request->input('email');
+
+        $user->save();
+
+        return redirect()->route('myProfile');
     }
 }

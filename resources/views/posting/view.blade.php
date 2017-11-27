@@ -43,8 +43,47 @@
 
                         </table>
 
+
+
                     </div>
+
+                    @foreach ($comments as $comment)
+                        <div class="panel-body">
+                            <tr>
+                                <td>{{ $comment->user_id }}</td>
+                                <td>{{ $commentt->comment }}</td>
+                                <td><a href = '{{ route('viewPost',['post_id' => $post->id_posting ]) }}'>Link</a></td>
+                            </tr>
+                        </div>
+                    @endforeach
+
+
                 </div>
+                <div class="container">
+
+                    <div class="panel-body">
+
+                        <form action = "{{route('postComment', ['post_id' => $post->id_posting])}}" method = "POST" enctype="multipart/form-data">
+                            <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+
+                            <table>
+                                <tr>
+                                    <td><input type='text' name='comment' /></td>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td colspan = '2'><br>
+                                        <input type = 'submit' value = "Upload"/>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>

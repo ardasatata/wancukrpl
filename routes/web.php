@@ -44,3 +44,7 @@ Route::post('/edit', 'ProfileController@edit')->middleware('auth');//post edit p
 
 Route::get('/follow/{user_id}', 'FollowController@follow')->middleware('auth')->name('follow'); //Follow User
 Route::get('/unfollow/{user_id}', 'FollowController@unfollow')->middleware('auth')->name('unfollow'); //Unfollow User
+
+
+Route::post('/comment/post/{$post_id}', 'CommentController@postComment')->middleware('auth')->name('postComment'); //Post Comment
+Route::post('/comment/delete/{$id_comment}', 'CommentController@deleteComment')->middleware('auth')->name('deleteComment'); //Delete Comment

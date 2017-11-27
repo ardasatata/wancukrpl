@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
 use App\User;
 use App\Posting;
@@ -98,6 +99,7 @@ class PostingController extends Controller
 
         $post = Posting::findOrFail($post_id);
         $like = Like::where('id_posting',$post_id)->count();
+        $comments = Comment::where('id_posting',$post_id);
 
         $post->like_count = $like;
 
@@ -114,7 +116,7 @@ class PostingController extends Controller
 //            $post->media_path, Carbon::now()->addMinutes(5)
 //        );
 
-        return view('posting.view',['post'=>$post , 'url'=>$url]);
+        return view('posting.view',['post'=>$post , 'url'=>$url , 'comments'=>$comments]);
     }
 
     public function myPost(){

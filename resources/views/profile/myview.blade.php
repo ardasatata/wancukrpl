@@ -11,7 +11,7 @@
 
                         <br>
 
-                        <img style="max-width: 100%" src="{{ URL::to($profile->profPic)}} ">
+                        <img style="max-width: 250px; max-width: 250px" src="{{ URL::to($profile->profPic)}} ">
 
                         <br>
 

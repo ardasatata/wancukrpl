@@ -42,49 +42,58 @@
                             </tr>
 
                         </table>
-
-
-
                     </div>
+                </div>
+                @foreach ($comments as $comment)
+                <div class="row">
 
-                    @foreach ($comments as $comment)
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{ App\User::userName($comment->user_id) }}</div>
                         <div class="panel-body">
-                            <tr>
-                                <td>{{ $comment->user_id }}</td>
-                                <td>{{ $commentt->comment }}</td>
-                                <td><a href = '{{ route('viewPost',['post_id' => $post->id_posting ]) }}'>Link</a></td>
-                            </tr>
+
+                        <tr>
+                            <td></td><a>
+                                @if(App\Comment::myComment($comment->user_id))
+                                    Delete Comment
+                                @endif
+                            </a><br>
+                            <td><h1>{{ $comment->comment }}</h1></td><br>
+                        </tr>
+
+
                         </div>
-                    @endforeach
-
-
-                </div>
-                <div class="container">
-
-                    <div class="panel-body">
-
-                        <form action = "{{route('postComment', ['post_id' => $post->id_posting])}}" method = "POST" enctype="multipart/form-data">
-                            <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-
-                            <table>
-                                <tr>
-                                    <td><input type='text' name='comment' /></td>
-                                </tr>
-                                <br>
-                                <tr>
-                                    <td colspan = '2'><br>
-                                        <input type = 'submit' value = "Upload"/>
-                                    </td>
-                                </tr>
-                            </table>
-
-                        </form>
 
                     </div>
-
                 </div>
+                </div>
+                @endforeach
 
-            </div>
+                <div class="row">
+
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form action = "{{route('postComment')}}" method = "POST" enctype="multipart/form-data">
+                                    <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+                                    <input type = "hidden" name = "post_id" value = "{{$post->id_posting}}">
+                                    <table>
+                                        <tr>
+                                            <td><input type='text' name='comment' /></td>
+                                        </tr>
+                                        <br>
+                                        <tr>
+                                            <td colspan = '2'><br>
+                                                <input type = 'submit' value = "Upload"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 @endsection

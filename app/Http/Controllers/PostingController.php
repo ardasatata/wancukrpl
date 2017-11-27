@@ -99,7 +99,7 @@ class PostingController extends Controller
 
         $post = Posting::findOrFail($post_id);
         $like = Like::where('id_posting',$post_id)->count();
-        $comments = Comment::where('id_posting',$post_id);
+        $comments = Comment::where('id_posting',$post_id)->get();
 
         $post->like_count = $like;
 
@@ -116,7 +116,9 @@ class PostingController extends Controller
 //            $post->media_path, Carbon::now()->addMinutes(5)
 //        );
 
-        return view('posting.view',['post'=>$post , 'url'=>$url , 'comments'=>$comments]);
+        //echo($comments);
+
+        return view('posting.view',['post'=>$post , 'url'=>$url , 'comments'=>$comments ]);
     }
 
     public function myPost(){

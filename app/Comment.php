@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Comment extends Model
 {
@@ -13,8 +14,8 @@ class Comment extends Model
         'user_id', 'id_posting', 'comment',
     ];
 
-    public static function myComment($user_id,$post_id){
-        if (Comment::where('user_id',$user_id)->where('id_posting',$post_id)->count()>=1)
+    public static function myComment($user_id){
+        if ($user_id==Auth::id())
             return true;
         else
             return false;

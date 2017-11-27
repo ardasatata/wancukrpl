@@ -27,6 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function userName($user_id){
+        return User::find($user_id)->name;
+    }
+
     public function profile(){
 
         return $this->hasOne('Profile','user_id');

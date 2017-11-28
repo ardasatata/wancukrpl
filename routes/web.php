@@ -48,3 +48,7 @@ Route::get('/unfollow/{user_id}', 'FollowController@unfollow')->middleware('auth
 
 Route::post('/comment/post/', 'CommentController@postComment')->middleware('auth')->name('postComment'); //Post Comment
 Route::get('/comment/delete/{$id_comment}', 'CommentController@deleteComment')->middleware('auth')->name('deleteComment'); //Delete Comment
+
+
+Route::get('/likelist/{user_id}', 'PostingController@likeList')->middleware('auth')->name('likeList'); //Follow User
+//Route::get('/unfollow/{user_id}', 'FollowController@unfollow')->middleware('auth')->name('unfollow'); //Unfollow User

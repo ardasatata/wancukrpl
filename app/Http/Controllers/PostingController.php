@@ -167,4 +167,11 @@ class PostingController extends Controller
         return redirect()->route('home');
 
     }
+
+    public function likeList($user_id){
+
+        $like = Like::where('user_id',$user_id)->paginate(15);
+
+        return view('posting.mypost',[''=>$mypost]);
+    }
 }

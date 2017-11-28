@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Posting;
 use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
@@ -17,9 +18,13 @@ class ProfileController extends Controller
 
         $profile = Profile::findOrFail($id);
 
+        $posting = Posting::where('user_id',$id)->get();
+
         $user = Auth::user();
 
-        return view('profile.myview',['profile'=>$profile , 'user'=>$user]);
+        //echo($posting);
+
+        return view('profile.myview',['profile'=>$profile , 'user'=>$user , 'posting' => $posting]);
     }
 
     public function viewProfile($id)

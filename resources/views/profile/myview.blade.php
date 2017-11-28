@@ -25,14 +25,18 @@
 
                                 {{$profile->description}}
 
-
+                                <td><a href = '{{ route('likeList',['user_id' => \Illuminate\Support\Facades\Auth::id() ]) }}'>Link</a></td>
                             </tr>
 
                         </table>
 
                     </div>
                 </div>
+
+                <div style="align-items: center" >{{ $posting->links() }}</div>
             </div>
+
+
         </div>
 
         @foreach ($posting as $post)
@@ -49,6 +53,5 @@
                     </div>
                 </div>
         @endforeach
-
     </div>
 @endsection

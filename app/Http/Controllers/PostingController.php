@@ -170,8 +170,8 @@ class PostingController extends Controller
 
     public function likeList($user_id){
 
-        $like = Like::where('user_id',$user_id)->paginate(15);
+        $likes = Like::where('user_id',$user_id)->paginate(5);
 
-        return view('posting.mypost',[''=>$mypost]);
+        return view('posting.likelist',['likes'=>$likes]);
     }
 }

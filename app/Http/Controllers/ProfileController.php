@@ -18,7 +18,7 @@ class ProfileController extends Controller
 
         $profile = Profile::findOrFail($id);
 
-        $posting = Posting::where('user_id',$id)->get();
+        $posting = Posting::where('user_id',$id)->paginate(5);
 
         $user = Auth::user();
 

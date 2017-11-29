@@ -10,7 +10,13 @@
                         @endif
                         @if(App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
                             <a href="{{route('deletePost', ['post_id' => $post->id_posting])}}">Delete</a>
-                        @endif </div>
+                        @endif
+
+                        @if(!App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
+                            <a href="{{route('viewProfile', ['id' => $post->user_id])}}">Profile</a>
+                        @endif
+
+                    </div>
 
 
 

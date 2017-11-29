@@ -32,9 +32,11 @@ class ProfileController extends Controller
 
         $profile = Profile::findOrFail($id);
 
+        $posting = Posting::where('user_id',$id)->paginate(5);
+
         $user = User::find($id);
 
-        return view('profile.view',['profile'=>$profile , 'user'=>$user]);
+        return view('profile.view',['profile'=>$profile , 'user'=>$user, 'posting' => $posting]);
     }
 
     public function editProfile()

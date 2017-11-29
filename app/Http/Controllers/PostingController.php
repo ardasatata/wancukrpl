@@ -102,7 +102,7 @@ class PostingController extends Controller
 
         $post = Posting::findOrFail($post_id);
         $like = Like::where('id_posting',$post_id)->count();
-        $comments = Comment::where('id_posting',$post_id)->get();
+        $comments = Comment::where('id_posting',$post_id)->orderby('created_at','asc')->get();
 
         $post->like_count = $like;
 
@@ -186,8 +186,7 @@ class PostingController extends Controller
 
         $posting = Posting::where('view_count','>',1)
             ->orderBy('view_count','desc')
-            ->take(10)
-            ->get();
+            ->paginate(10);
 
         return view('posting.result',['posting'=>$posting]);
     }

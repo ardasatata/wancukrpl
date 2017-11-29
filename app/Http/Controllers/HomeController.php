@@ -40,6 +40,7 @@ class HomeController extends Controller
         $posting = DB::table('posting')->join('userFollowing','posting.user_id','=','userFollowing.followed_id')
             ->where('userFollowing.user_id','=',$id)
             ->orWhere('posting.user_id','=',$id)
+            ->orderby('created_at','desc')
             ->paginate(10);
 
 

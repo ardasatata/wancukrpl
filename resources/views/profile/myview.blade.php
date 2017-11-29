@@ -1,28 +1,22 @@
 @extends('layouts.app')
 
+<title>Wancuk - My Profile</title>
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">My Profile <a href="{{route('editProfile')}}">EDIT</a> </div>
-
                     <div class="panel-body">
-
-                        <br>
-
-                        <img style="max-width: 250px; max-width: 250px" src="{{ URL::to($profile->profPic)}} ">
-
-                        <br>
-
                         <table>
                             <tr>
-                                {{$user->name}}
+                                <h1>{{$user->name}}</h1>
+                                <br>
+                                <img style="max-width: 250px; max-width: 250px" src="{{ URL::to($profile->profPic)}} ">
                                 <br>
                                 {{$user->email}}
-
-                                {{$profile->profPic}}
-
+                                <br>
                                 {{$profile->description}}
 
                                 <td><a href = '{{ route('likeList',['user_id' => \Illuminate\Support\Facades\Auth::id() ]) }}'>Like List</a></td>

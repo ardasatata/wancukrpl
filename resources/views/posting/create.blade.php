@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>Wancuk - Create Post</title>
 @section('content')
     <div class="container">
         <div class="row">

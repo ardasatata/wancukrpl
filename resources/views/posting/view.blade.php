@@ -5,17 +5,17 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{$post->judul_posting}} @if(App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
-                            <a href="{{route('editPost', ['post_id' => $post->id_posting])}}">EDIT</a>
+                    <div class="panel-heading">{{$post->judul_posting}}
+                        by {{ App\User::userName($post->user_id) }}
+                    @if(!App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
+                            <a href="{{route('viewProfile', ['id' => $post->user_id])}}">{{ App\User::userName($post->user_id) }}</a>
+                        @endif
+                        @if(App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
+                            <a href="{{route('editPost', ['post_id' => $post->id_posting])}}">Edit</a>
                         @endif
                         @if(App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
                             <a href="{{route('deletePost', ['post_id' => $post->id_posting])}}">Delete</a>
                         @endif
-                        by
-                    @if(!App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
-                            <a href="{{route('viewProfile', ['id' => $post->user_id])}}">{{ App\User::userName($post->user_id) }}</a>
-                        @endif
-
                     </div>
 
 
@@ -24,17 +24,27 @@
 
                 <table>
                     <tr>
-                        {{$post->id_posting}}
+                        Post ID : {{$post->id_posting}}
                         <br>
-                        {{$post->caption}}
+                        Caption : {{$post->caption}}
                         <br>
-                        {{$post->view_count}}
+                        View Count : {{$post->view_count}}
                         <br>
-                        {{$post->like_count}}
+                        Like Count : {{$post->like_count}}
                         <br>
-                        {{$post->created_at}}
+                        Created at : {{$post->created_at}}
                         <br>
-                        {{$post->updated_at}}
+                        Updated at : {{$post->updated_at}}
+                        <br>
+
+                        @if($post->tipe_posting=="jpeg" || $post->tipe_posting=="jpg" || $post->tipe_posting=="png")
+                            <img style="max-width: 300px" src="{{ URL::to('storage/' . $post->media_path) }}">
+                        @elseif($post->tipe_posting=="mpga")
+                            <audio src="{{ URL::to('storage/' . $post->media_path) }} " controls>
+                                Sorry, your browser doesn't support HTML5 audio
+                            </audio>
+                        @endif
+
                         <br>
 
                         @if(!(App\Like::hasLike(\Illuminate\Support\Facades\Auth::id(),$post->id_posting)))
@@ -43,34 +53,26 @@
                             <a href="{{route('unlike', ['post_id' => $post->id_posting])}}">UNLIKE</a>
                         @endif
 
-                        @if($post->tipe_posting=="jpeg" || $post->tipe_posting=="jpg" || $post->tipe_posting=="png")
-                            <img style="max-width: 100%" src="{{ URL::to('storage/' . $post->media_path) }}">
-                        @elseif($post->tipe_posting=="mpga")
-                            <audio src="{{ URL::to('storage/' . $post->media_path) }} " controls>
-                                Sorry, your browser doesn't support HTML5 audio
-                            </audio>
-                        @endif
-
                     </tr>
 
                 </table>
             </div>
         </div>
+                <h1>Comment</h1>
+
                 @foreach ($comments as $comment)
                 <div class="row">
 
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
-                        <div class="panel-heading">{{ App\User::userName($comment->user_id) }}</div>
-                        <div class="panel-body">
-
-                        <tr>
-                            <td></td><a>
+                        <div class="panel-heading">{{ App\User::userName($comment->user_id) }} <a>
                                 @if(App\Comment::myComment($comment->user_id))
                                     Delete Comment
                                 @endif
-                            </a><br>
-                            <td><h1>{{ $comment->comment }}</h1></td><br>
+                            </a><br>{{ $comment->created_at }}</div>
+                        <div class="panel-body">
+                        <tr>
+                            <td>{{ $comment->comment }}</td><br>
                         </tr>
 
 

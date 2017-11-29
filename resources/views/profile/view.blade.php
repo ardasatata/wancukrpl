@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>Wancuk - {{$user->name}}</title>
+
 @section('content')
     <div class="container">
         <div class="row">

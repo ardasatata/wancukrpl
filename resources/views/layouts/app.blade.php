@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Wancuk</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -56,6 +56,11 @@
                             <li>
                                 <a href="{{ route('createPost') }}">
                                     Create Post
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('topten') }}">
+                                    TOP 10
                                 </a>
                             </li>
                             <li class="dropdown">

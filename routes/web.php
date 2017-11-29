@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@homeFeed')->name('home');
 
-Route::get('/feed', 'HomeController@homeFeed')->name('feed');
+//Route::get('/feed', 'HomeController@homeFeed')->name('feed');
 
 Route::get('/post/create', 'PostingController@createForm')->name('createPost')->middleware('auth'); //tambah post
 Route::post('/post/posting', 'PostingController@create')->middleware('auth');
@@ -52,7 +52,10 @@ Route::post('/comment/post/', 'CommentController@postComment')->middleware('auth
 Route::get('/comment/delete/{$id_comment}', 'CommentController@deleteComment')->middleware('auth')->name('deleteComment'); //Delete Comment
 
 
-Route::get('/likelist/{user_id}', 'PostingController@likeList')->middleware('auth')->name('likeList'); //Follow User
+Route::get('/likelist/{user_id}', 'PostingController@likeList')->middleware('auth')->name('likeList'); //Like List
 //Route::get('/unfollow/{user_id}', 'FollowController@unfollow')->middleware('auth')->name('unfollow'); //Unfollow User
 
-Route::get('/topten', 'PostingController@top10')->middleware('auth')->name('topten'); //Follow User
+Route::get('/topten', 'PostingController@top10')->middleware('auth')->name('topten'); //Top 10 Post
+
+Route::post('/search', 'PostingController@search')->middleware('auth')->name('search'); //post cari iklan dr form
+Route::get('/search', 'PostingController@search')->middleware('auth')->name('searchget'); //post cari iklan dr form

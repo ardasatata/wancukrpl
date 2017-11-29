@@ -25,7 +25,7 @@
 
                                 {{$profile->description}}
 
-                                <td><a href = '{{ route('likeList',['user_id' => \Illuminate\Support\Facades\Auth::id() ]) }}'>Link</a></td>
+                                <td><a href = '{{ route('likeList',['user_id' => \Illuminate\Support\Facades\Auth::id() ]) }}'>Like List</a></td>
                             </tr>
 
                         </table>

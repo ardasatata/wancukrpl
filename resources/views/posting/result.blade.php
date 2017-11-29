@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-
+            <div class="panel-default">{{ $posting->links() }}</div>
             @foreach ($posting as $post)
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
@@ -12,13 +12,13 @@
                             <tr>
                                 <td>{{ $post->id_posting }}</td>
                                 <td>{{ $post->judul_posting }}</td>
+                                <td>{{ $post->caption }}</td>
                                 <td><a href = '{{ route('viewPost',['post_id' => $post->id_posting ]) }}'>Link</a></td>
                             </tr>
                         </div>
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 @endsection

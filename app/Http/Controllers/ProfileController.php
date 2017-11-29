@@ -36,6 +36,9 @@ class ProfileController extends Controller
 
         $user = User::find($id);
 
+        if ($id==Auth::id())
+            return redirect()->route('myProfile');
+
         return view('profile.view',['profile'=>$profile , 'user'=>$user, 'posting' => $posting]);
     }
 

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Support\Facades\DB;
 
 class PostingController extends Controller
 {
@@ -40,9 +41,11 @@ class PostingController extends Controller
 
             $path = Storage::disk('upload')->put($filename, $file);
 
+            $extension = $request->fileUpload->extension();
+
+            $posting->tipe_posting = $extension;
+
             $posting->media_path = $path;
-
-
 
         $posting->save();
 
@@ -172,7 +175,11 @@ class PostingController extends Controller
 
         $likes = Like::where('user_id',$user_id)->paginate(5);
 
-        return view('posting.likelist',['likes'=>$likes]);
+        $posting = DB::table('posting')->join('likePosting','posting.id_posting','=','likePosting.id_posting')
+            ->where('likePosting.user_id','=',$user_id)
+            ->paginate(5);
+
+        return view('posting.likelist',['likes'=>$likes,'posting'=>$posting]);
     }
 
     public function top10(){
@@ -183,6 +190,20 @@ class PostingController extends Controller
             ->get();
 
         return view('posting.result',['posting'=>$posting]);
+    }
+
+    public function search(Request $request){
+
+        $keyword = $request->input('keyword');
+
+        $posting = Posting::where('judul_posting','like','%'.$keyword."%")
+            ->orWhere('caption','like','%'.$keyword."%")
+            ->paginate(5);
+
+
+
+        return view('posting.result',['posting'=>$posting]);
+
     }
 
 

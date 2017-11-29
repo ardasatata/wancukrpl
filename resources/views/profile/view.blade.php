@@ -15,6 +15,8 @@
 
                     <div class="panel-body">
 
+                        <img style="max-width: 250px; max-width: 250px" src="{{ URL::to($profile->profPic)}} ">
+                        <br>
                         <table>
                             <tr>
                                 {{$user->name}}
@@ -24,10 +26,12 @@
                                 {{$profile->profPic}}
                             </tr>
 
+                            <td><a href = '{{ route('likeList',['user_id' => \Illuminate\Support\Facades\Auth::id() ]) }}'>Like List</a></td>
                         </table>
 
                     </div>
                 </div>
+                <div style="align-items: center" >{{ $posting->links() }}</div>
             </div>
         </div>
 

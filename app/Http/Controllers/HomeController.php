@@ -40,15 +40,9 @@ class HomeController extends Controller
         $posting = DB::table('posting')->join('userFollowing','posting.user_id','=','userFollowing.followed_id')
             ->where('userFollowing.user_id','=',$id)
             ->orWhere('posting.user_id','=',$id)
-            ->get();
+            ->paginate(10);
 
-        foreach ($posting as $post) {
 
-            //echo($post);
-
-        }
-        echo($posting);
-
-        return view('feed',['posting'=>$posting]);
+        return view('home',['posting'=>$posting]);
     }
 }

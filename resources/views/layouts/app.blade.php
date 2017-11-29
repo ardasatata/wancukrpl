@@ -28,8 +28,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                        Wancuk
                     </a>
                 </div>
 
@@ -46,6 +46,13 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li class="navbar-nav">
+                                <form action = "{{route('search')}}" method = "POST" enctype="multipart/form-data">
+                                    <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+                                    <input type='text' name='keyword' />
+                                    <input type = 'submit' value = "Search"/>
+                                </form>
+                            </li>
                             <li>
                                 <a href="{{ route('createPost') }}">
                                     Create Post

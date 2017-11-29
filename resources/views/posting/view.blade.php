@@ -11,9 +11,9 @@
                         @if(App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
                             <a href="{{route('deletePost', ['post_id' => $post->id_posting])}}">Delete</a>
                         @endif
-
-                        @if(!App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
-                            <a href="{{route('viewProfile', ['id' => $post->user_id])}}">Profile</a>
+                        by
+                    @if(!App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
+                            <a href="{{route('viewProfile', ['id' => $post->user_id])}}">{{ App\User::userName($post->user_id) }}</a>
                         @endif
 
                     </div>
@@ -43,7 +43,13 @@
                             <a href="{{route('unlike', ['post_id' => $post->id_posting])}}">UNLIKE</a>
                         @endif
 
-                        <img style="max-width: 100%" src="{{ URL::to('storage/' . $post->media_path) }} ">
+                        @if($post->tipe_posting=="jpeg" || $post->tipe_posting=="jpg" || $post->tipe_posting=="png")
+                            <img style="max-width: 100%" src="{{ URL::to('storage/' . $post->media_path) }}">
+                        @elseif($post->tipe_posting=="mpga")
+                            <audio src="{{ URL::to('storage/' . $post->media_path) }} " controls>
+                                Sorry, your browser doesn't support HTML5 audio
+                            </audio>
+                        @endif
 
                     </tr>
 

@@ -34,7 +34,7 @@ class PostingController extends Controller
         $posting->user_id = $id;
 
 
-            $file = $request->file('fileUpload');
+            $file = $request->file('fileUpload'); //file yg diupload
 
             $filename = time().$request->input('fileUpload');
 
@@ -174,4 +174,16 @@ class PostingController extends Controller
 
         return view('posting.likelist',['likes'=>$likes]);
     }
+
+    public function top10(){
+
+        $posting = Posting::where('view_count','>',1)
+            ->orderBy('view_count','desc')
+            ->take(10)
+            ->get();
+
+        return view('posting.result',['posting'=>$posting]);
+    }
+
+
 }

@@ -22,34 +22,34 @@
 
                     <div class="panel-body">
 
-                        <table>
-                            <tr>
-                                {{$post->id_posting}}
-                                <br>
-                                {{$post->caption}}
-                                <br>
-                                {{$post->view_count}}
-                                <br>
-                                {{$post->like_count}}
-                                <br>
-                                {{$post->created_at}}
-                                <br>
-                                {{$post->updated_at}}
-                                <br>
+                <table>
+                    <tr>
+                        {{$post->id_posting}}
+                        <br>
+                        {{$post->caption}}
+                        <br>
+                        {{$post->view_count}}
+                        <br>
+                        {{$post->like_count}}
+                        <br>
+                        {{$post->created_at}}
+                        <br>
+                        {{$post->updated_at}}
+                        <br>
 
-                                @if(!(App\Like::hasLike(\Illuminate\Support\Facades\Auth::id(),$post->id_posting)))
-                                    <a href="{{route('like', ['post_id' => $post->id_posting])}}">LIKE</a>
-                                @else
-                                    <a href="{{route('unlike', ['post_id' => $post->id_posting])}}">UNLIKE</a>
-                                @endif
+                        @if(!(App\Like::hasLike(\Illuminate\Support\Facades\Auth::id(),$post->id_posting)))
+                            <a href="{{route('like', ['post_id' => $post->id_posting])}}">LIKE</a>
+                        @else
+                            <a href="{{route('unlike', ['post_id' => $post->id_posting])}}">UNLIKE</a>
+                        @endif
 
-                                <img style="max-width: 100%" src="{{ URL::to('storage/' . $post->media_path) }} ">
+                        <img style="max-width: 100%" src="{{ URL::to('storage/' . $post->media_path) }} ">
 
-                            </tr>
+                    </tr>
 
-                        </table>
-                    </div>
-                </div>
+                </table>
+            </div>
+        </div>
                 @foreach ($comments as $comment)
                 <div class="row">
 

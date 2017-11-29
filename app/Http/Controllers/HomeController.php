@@ -6,6 +6,7 @@ use App\Follow;
 use App\Posting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -33,8 +34,21 @@ class HomeController extends Controller
 
         $id = Auth::id();
 
-        
+        //$posting = Posting::all();
 
 
+        $posting = DB::table('posting')->join('userFollowing','posting.user_id','=','userFollowing.followed_id')
+            ->where('userFollowing.user_id','=',$id)
+            ->orWhere('posting.user_id','=',$id)
+            ->get();
+
+        foreach ($posting as $post) {
+
+            //echo($post);
+
+        }
+        echo($posting);
+
+        return view('feed',['posting'=>$posting]);
     }
 }

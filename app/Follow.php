@@ -21,4 +21,9 @@ class Follow extends Model
         else
             return false;
     }
+
+    public function posting(){
+
+        return $this->belongsToMany('App\Posting','userFollowing','followed_id', 'user_id');
+    }
 }

@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/feed', 'HomeController@homeFeed')->name('feed');
+
 Route::get('/post/create', 'PostingController@createForm')->name('createPost')->middleware('auth'); //tambah post
 Route::post('/post/posting', 'PostingController@create')->middleware('auth');
 

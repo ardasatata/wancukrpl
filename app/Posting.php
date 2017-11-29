@@ -33,13 +33,8 @@ class Posting extends Model
 
     public function followed(){
 
-        return $this->belongsToMany('Follow', 'posting','followed_id','user_id');
+        return $this->belongsToMany('App\Follow', 'userFollowing','followed_id','user_id');
     }
 
-    public function followedPost($user_id){
 
-        $post = Posting::where('user_id',$user_id);
-
-        return $post;
-    }
 }

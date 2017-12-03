@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -29,6 +30,16 @@ class User extends Authenticatable
 
     public static function userName($user_id){
         return User::find($user_id)->name;
+    }
+
+    public static function isAdmin(){
+
+        $user = User::find(Auth::id());
+
+        if ($user->admin==true)
+            return true;
+        else
+            return false;
     }
 
     public function profile(){

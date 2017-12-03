@@ -59,3 +59,5 @@ Route::get('/topten', 'PostingController@top10')->middleware('auth')->name('topt
 
 Route::post('/search', 'PostingController@search')->middleware('auth')->name('search'); //post cari iklan dr form
 Route::get('/search', 'PostingController@search')->middleware('auth')->name('searchget'); //post cari iklan dr form
+
+Route::get('/delete/{user_id}', 'ProfileController@deleteUser')->middleware('auth')->name('deleteUser'); //post cari iklan dr form

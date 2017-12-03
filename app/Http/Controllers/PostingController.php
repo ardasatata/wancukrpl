@@ -14,12 +14,29 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class PostingController extends Controller
 {
+
+    public function messages()
+    {
+        return [
+            'Judul.required' => 'Judul harus di isi',
+            'Caption.required'  => 'Caption harus di isi',
+        ];
+    }
+
     public function create(Request $request){ //insert data
 
         //dd($request->file('fileUpload'));
+
+        $this->validate($request, [
+            'Judul' => 'bail|required|unique:posting,judul_posting|max:255',
+            'Caption' => 'required|max:255',
+            'fileUpload' => 'required|mimetypes:audio/mpeg,image/jpeg,image/png',
+        ]);
+
 
     	$id = Auth::id();
 
@@ -179,13 +196,15 @@ class PostingController extends Controller
             ->where('likePosting.user_id','=',$user_id)
             ->paginate(5);
 
+        //dd($posting);
+
         return view('posting.likelist',['likes'=>$likes,'posting'=>$posting]);
     }
 
     public function top10(){
 
         $posting = Posting::where('view_count','>',1)
-            ->orderBy('view_count','desc')
+            ->orderBy('like_count','desc')
             ->paginate(10);
 
         return view('posting.result',['posting'=>$posting]);
@@ -197,6 +216,7 @@ class PostingController extends Controller
 
         $posting = Posting::where('judul_posting','like','%'.$keyword."%")
             ->orWhere('caption','like','%'.$keyword."%")
+            ->orderby('created_at','desc')
             ->paginate(5);
 
 

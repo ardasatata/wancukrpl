@@ -23,6 +23,10 @@ class CommentController extends Controller
 
     public function deleteComment($id_comment){ //khusus yg komen
 
+        $comment = Comment::find($id_comment);
 
+        $comment->delete();
+
+        return redirect()->back();
     }
 }

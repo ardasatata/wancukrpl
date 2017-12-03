@@ -32,16 +32,18 @@ class HomeController extends Controller
 
     public function homeFeed(){
 
-        $id = Auth::id();
 
         //$posting = Posting::all();
 
 
         $posting = DB::table('posting')->join('userFollowing','posting.user_id','=','userFollowing.followed_id')
-            ->where('userFollowing.user_id','=',$id)
-            ->orWhere('posting.user_id','=',$id)
+            ->where('userFollowing.user_id','=',Auth::id())
+            ->orWhere('posting.user_id','=',Auth::id())
             ->orderby('created_at','desc')
             ->paginate(10);
+
+
+        //dd($posting);
 
 
         return view('home',['posting'=>$posting]);

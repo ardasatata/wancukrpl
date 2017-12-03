@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
+use App\Like;
 use App\Posting;
 use App\Profile;
 use App\User;
@@ -9,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -85,5 +88,26 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->route('myProfile');
+    }
+
+    public function deleteUser($user_id){
+
+        $user = User::find($user_id);
+        $profile = Profile::where('user_id',$user_id);
+        $posting = Posting::where('user_id',$user_id);
+        $following = DB::table('userFollowing')->where('user_id','=',$user_id)
+            ->orWhere('followed_id','=',$user_id);
+        $like = Like::where('user_id',$user_id);
+        $comment = Comment::where('user_id',$user_id));
+
+
+        $user->delete();
+        $profile->delete();
+        $posting->delete();
+        $following->delete();
+        $like->delete();
+        $comment->delete();
+
+        return redirect()->route('home');
     }
 }

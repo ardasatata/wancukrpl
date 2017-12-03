@@ -13,7 +13,7 @@
                         @if(App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
                             <a href="{{route('editPost', ['post_id' => $post->id_posting])}}">Edit</a>
                         @endif
-                        @if(App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting))
+                        @if(App\Posting::myPost(\Illuminate\Support\Facades\Auth::id(),$post->id_posting) || \App\User::isAdmin(true) )
                             <a href="{{route('deletePost', ['post_id' => $post->id_posting])}}">Delete</a>
                         @endif
                     </div>
@@ -66,18 +66,15 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">{{ App\User::userName($comment->user_id) }} <a>
-                                @if(App\Comment::myComment($comment->user_id))
-                                    Delete Comment
+                                @if(App\Comment::myComment($comment->user_id) || \App\User::isAdmin(true) )
+                                    <a href="{{route('deleteComment', ['user_id' => $comment->id_comment])}}">Delete</a>
                                 @endif
                             </a><br>{{ $comment->created_at }}</div>
                         <div class="panel-body">
                         <tr>
                             <td>{{ $comment->comment }}</td><br>
                         </tr>
-
-
                         </div>
-
                     </div>
                 </div>
                 </div>

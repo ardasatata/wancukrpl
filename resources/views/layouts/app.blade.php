@@ -46,11 +46,15 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="navbar-nav">
-                                <form action = "{{route('search')}}" method = "POST" enctype="multipart/form-data">
+                            <li>
+                                <form class="form-inline" action = "{{route('search')}}" method = "POST" enctype="multipart/form-data">
+                                <div class="input-group">
                                     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-                                    <input type='text' name='keyword' />
-                                    <input type = 'submit' value = "Search"/>
+                                    <input type='text' name='keyword' class="form-control" />
+                                    <span class="input-group-btn">
+                                        <input type = 'submit' value = "Search" class="btn btn-default"/>
+                                    </span>
+                                </div>
                                 </form>
                             </li>
                             <li>

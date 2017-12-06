@@ -98,7 +98,7 @@ class ProfileController extends Controller
         $following = DB::table('userFollowing')->where('user_id','=',$user_id)
             ->orWhere('followed_id','=',$user_id);
         $like = Like::where('user_id',$user_id);
-        $comment = Comment::where('user_id',$user_id));
+        $comment = Comment::where('user_id',$user_id);
 
 
         $user->delete();

@@ -12,14 +12,36 @@
 
         <!-- Styles -->
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
+
+            body, html {
+                height: 100%;
+                margin: 0;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
-                margin: 0;
             }
+
+            .bg {
+                /* The image used */
+                background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) ),url("bg.gif");
+
+                /* Full height */
+                height: 100%;
+
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            /*html, body {*/
+                /*background-color: #fff;*/
+                /*color: #636b6f;*/
+                /*font-family: 'Raleway', sans-serif;*/
+                /*font-weight: 100;*/
+                /*height: 100vh;*/
+                /*margin: 0;*/
+            /*}*/
 
             .full-height {
                 height: 100vh;
@@ -33,6 +55,7 @@
 
             .position-ref {
                 position: relative;
+                font-size:16px;
             }
 
             .top-right {
@@ -43,14 +66,15 @@
 
             .content {
                 text-align: center;
+                color: #e8e8e8;
             }
 
             .title {
-                font-size: 84px;
+                font-size: 96px;
             }
 
             .links > a {
-                color: #636b6f;
+                color: #ffffff;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -65,6 +89,7 @@
         </style>
     </head>
     <body>
+    <div class="bg">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -84,5 +109,6 @@
                 <div class="position-ref">Wadah Artis Untuk Curahkan Karya</div>
             </div>
         </div>
+    </div>
     </body>
 </html>

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@homeFeed')->name('home');
+Route::get('/home', 'PostingController@top10')->name('home');
 
 //Route::get('/feed', 'HomeController@homeFeed')->name('feed');
 

@@ -21,4 +21,8 @@ class Profile extends Model
     	return $this->belongsTo('User');
     }
 
+    public static function profilePic($user_id){
+        return Profile::find($user_id)->profPic;
+    }
+
 }

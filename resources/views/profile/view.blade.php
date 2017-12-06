@@ -8,31 +8,38 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">{{$user->name}}'s Profile
-                        @if((App\Follow::isFollowing(\Illuminate\Support\Facades\Auth::id(),$user->id)))
-                            <a href="{{route('unfollow', ['user_id' => $user->id])}}">Unfollow</a>
-                        @else
-                            <a href="{{route('follow', ['user_id' => $user->id])}}">Follow</a>
-                        @endif
-                        @if( \App\User::isAdmin(true) )
-                            <a href="{{route('deleteUser', ['user_id' => $user->id])}}">Delete User</a>
-                        @endif
                     </div>
 
                     <div class="panel-body">
 
-                        <img style="max-width: 250px; max-width: 250px" src="{{ URL::to($profile->profPic)}} ">
-                        <br>
-                        <table>
-                            <tr>
-                                {{$user->name}}
-                                <br>
-                                {{$user->email}}
+                        <div class="panel-body">
 
-                                {{$profile->profPic}}
-                            </tr>
+                            <header>
+                                <div class="profilePhoto">
+                                    <!-- Profile photo -->
+                                    <img style="max-width: 150px; max-width: 150px" src="{{ URL::to($profile->profPic)}} "> </div>
+                                <!-- Identity details -->
+                                <section class="profileHeader">
+                                    <h1>{{$user->name}}</h1>
+                                    <h4>{{$profile->description}}</h4>
+                                    <hr>
+                                </section>
+                                <p>{{$user->email}}</p>
+                                <a class="btn btn-info" href = '{{ route('likeList',['user_id' => \Illuminate\Support\Facades\Auth::id() ]) }}'>Like List</a>
+                                <a class="btn btn-info" href="{{route('editProfile')}}">EDIT</a>
+                                @if((App\Follow::isFollowing(\Illuminate\Support\Facades\Auth::id(),$user->id)))
+                                    <a class="btn btn-danger" href="{{route('unfollow', ['user_id' => $user->id])}}">Unfollow</a>
+                                @else
+                                    <a class="btn btn-success" href="{{route('follow', ['user_id' => $user->id])}}">Follow</a>
+                                @endif
+                                @if( \App\User::isAdmin(true) )
+                                    <a class="btn btn-danger" href="{{route('deleteUser', ['user_id' => $user->id])}}">Delete User</a>
+                            @endif
 
-                            <td><a href = '{{ route('likeList',['user_id' => $user->id ]) }}'>Like List</a></td>
-                        </table>
+                                <!-- Links to Social network accounts -->
+                            </header>
+                        </div>
+                    </div>
 
                     </div>
                 </div>

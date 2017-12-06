@@ -47,26 +47,15 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li>
-                                <form class="form-inline" action = "{{route('search')}}" method = "POST" enctype="multipart/form-data">
-                                <div class="input-group">
-                                    <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-                                    <input type='text' name='keyword' class="form-control" />
-                                    <span class="input-group-btn">
-                                        <input type = 'submit' value = "Search" class="btn btn-default"/>
-                                    </span>
-                                </div>
-                                </form>
-                            </li>
-                            <li>
                                 <a href="{{ route('createPost') }}">
                                     Create Post
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ route('topten') }}">
-                                    TOP 10
-                                </a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="{{ route('topten') }}">--}}
+                                    {{--TOP 10--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -95,6 +84,17 @@
                                         </form>
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <form class="navbar-form navbar-right" action = "{{route('search')}}" method = "POST" enctype="multipart/form-data">
+                                    <div class="input-group">
+                                        <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+                                        <input type='text' name='keyword' class="form-control" />
+                                        <span class="input-group-btn">
+                                        <input type = 'submit' value = "Search" class="btn btn-default"/>
+                                    </span>
+                                    </div>
+                                </form>
                             </li>
                         @endif
                     </ul>

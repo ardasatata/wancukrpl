@@ -19,7 +19,7 @@
                             </div>
                         @endif
 
-                        <form action = "/post/posting" method = "POST" enctype="multipart/form-data">
+                        <form action = "/post/posting" method = "POST" enctype="multipart/form-data" id="createForm">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
 
                             <table>
@@ -32,7 +32,8 @@
                                 <tr>
                                     <td>Caption</td>
                                     <br>
-                                    <td>       <input type='text' name='Caption' />
+                                    <td>
+                                        <input type='text' name='Caption' />
                                     </td>
                                 </tr>
 

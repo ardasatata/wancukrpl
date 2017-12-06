@@ -7,23 +7,25 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">My Profile <a href="{{route('editProfile')}}">EDIT</a> </div>
+                    <div class="panel-heading">My Profile</div>
                     <div class="panel-body">
-                        <table>
-                            <tr>
+
+                        <header>
+                            <div class="profilePhoto">
+                                <!-- Profile photo -->
+                                <img style="max-width: 150px; max-width: 150px" src="{{ URL::to($profile->profPic)}} "> </div>
+                            <!-- Identity details -->
+                            <section class="profileHeader">
                                 <h1>{{$user->name}}</h1>
-                                <br>
-                                <img style="max-width: 250px; max-width: 250px" src="{{ URL::to($profile->profPic)}} ">
-                                <br>
-                                {{$user->email}}
-                                <br>
-                                {{$profile->description}}
+                                <h4>{{$profile->description}}</h4>
+                                <hr>
+                            </section>
+                            <p>{{$user->email}}</p>
+                                <a class="btn btn-info" href = '{{ route('likeList',['user_id' => \Illuminate\Support\Facades\Auth::id() ]) }}'>Like List</a>
+                                <a class="btn btn-info" href="{{route('editProfile')}}">EDIT</a>
 
-                                <td><a href = '{{ route('likeList',['user_id' => \Illuminate\Support\Facades\Auth::id() ]) }}'>Like List</a></td>
-                            </tr>
-
-                        </table>
-
+                            <!-- Links to Social network accounts -->
+                        </header>
                     </div>
                 </div>
 
@@ -56,4 +58,7 @@
             </div>
         @endforeach
     </div>
+
+
+
 @endsection

@@ -18,11 +18,9 @@
                                     Sorry, your browser doesn't support HTML5 audio
                                 </audio>
                             @endif
-                            <br>
                             <tr>
-                                <td>{{ $post->caption }}</td><br>
-                                <td>View : {{$post->view_count}}</td><br>
-                                <td>Like : {{$post->like_count}}</td><br>
+                                <h3><td>{{ $post->caption }}</td><br></h3>
+                                <h6><td>View : {{$post->view_count}} Like : {{$post->like_count}}</td><br></h6>
                             </tr>
                         </div>
                     </div>

@@ -5,9 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Mpociot\Firebase\SyncsWithFirebase;
 
 class User extends Authenticatable
 {
+
+    use SyncsWithFirebase;
+
     use Notifiable;
 
     /**

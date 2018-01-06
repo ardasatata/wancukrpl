@@ -35,4 +35,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'firebase' => [
+        'api_key' => 'AIzaSyCqplsnOVvqjYk_cjO2Hg3OFHC5j7cbaEM', // Only used for JS integration
+        'auth_domain' => 'laravel-test-8da47.firebaseapp.com', // Only used for JS integration
+        'database_url' => 'https://laravel-test-8da47.firebaseio.com',
+        'secret' => 'KnvxUIFxes2XOk0IFGex0pzBdOcRsTY7A6ydrgkI',
+        'storage_bucket' => 'laravel-test-8da47.appspot.com', // Only used for JS integration
+    ]
+
 ];

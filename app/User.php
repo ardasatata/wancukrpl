@@ -4,9 +4,14 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use Mpociot\Firebase\SyncsWithFirebase;
 
 class User extends Authenticatable
 {
+
+    use SyncsWithFirebase;
+
     use Notifiable;
 
     /**
@@ -26,6 +31,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function userName($user_id){
+        return User::find($user_id)->name;
+    }
+
+    public static function isAdmin(){
+
+        $user = User::find(Auth::id());
+
+        if ($user->admin==true)
+            return true;
+        else
+            return false;
+    }
 
     public function profile(){
 

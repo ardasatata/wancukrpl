@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Wancuk</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -28,8 +28,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                        Wancuk
                     </a>
                 </div>
 
@@ -51,6 +51,11 @@
                                     Create Post
                                 </a>
                             </li>
+                            {{--<li>--}}
+                                {{--<a href="{{ route('topten') }}">--}}
+                                    {{--TOP 10--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -79,6 +84,17 @@
                                         </form>
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <form class="navbar-form navbar-right" action = "{{route('search')}}" method = "POST" enctype="multipart/form-data">
+                                    <div class="input-group">
+                                        <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+                                        <input type='text' name='keyword' class="form-control" />
+                                        <span class="input-group-btn">
+                                        <input type = 'submit' value = "Search" class="btn btn-default"/>
+                                    </span>
+                                    </div>
+                                </form>
                             </li>
                         @endif
                     </ul>

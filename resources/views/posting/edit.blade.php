@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>Wancuk - Create Post</title>
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -9,31 +9,20 @@
 
                     <div class="panel-body">
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        <form action = "/post/posting" method = "POST" enctype="multipart/form-data" id="createForm">
+                        <form action = "/post/{{$post->id_posting}}/edit" method = "POST" enctype="multipart/form-data">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
 
                             <table>
                                 <tr>
                                     <td>Judul Posting</td>
-                                    <td><input type='text' name='Judul' /></td>
+                                    <td><input type='text' name='Judul' value="{{$post->judul_posting}}"/></td>
                                 </tr>
                                 <br>
 
                                 <tr>
                                     <td>Caption</td>
                                     <br>
-                                    <td>
-                                        <input type='text' name='Caption' />
+                                    <td>       <input type='text' name='Caption' value="{{$post->caption}}"/>
                                     </td>
                                 </tr>
 
@@ -50,7 +39,10 @@
                                     <td colspan = '2'><br>
                                         <input type = 'submit' value = "Upload"/>
                                     </td>
+
                                 </tr>
+
+                                <tr><img style="max-width: 100%" src="{{ URL::to('storage/' . $post->media_path) }} "></tr>
                             </table>
 
                         </form>

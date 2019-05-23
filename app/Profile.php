@@ -11,6 +11,8 @@ class Profile extends Model
 
 	public $timestamps = false;
 
+    protected $primaryKey = 'user_id';
+
 	protected $fillable = [
         'profPic','description',
     ];
@@ -18,4 +20,9 @@ class Profile extends Model
     public function user(){
     	return $this->belongsTo('User');
     }
+
+    public static function profilePic($user_id){
+        return Profile::find($user_id)->profPic;
+    }
+
 }

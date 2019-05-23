@@ -15,7 +15,7 @@ class CreateProfileTable extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
             $table->increments('user_id');
-            $table->string('profPic')->default('default.jpg');
+            $table->string('profPic')->default('/storage/default.jpg');
             $table->text('description')->nullable();
         });
     }

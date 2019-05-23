@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>Wancuk - Create Post</title>
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -9,48 +9,45 @@
 
                     <div class="panel-body">
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        <form action = "/post/posting" method = "POST" enctype="multipart/form-data" id="createForm">
+                        <form action = "/edit" method = "POST" enctype="multipart/form-data">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
 
                             <table>
                                 <tr>
-                                    <td>Judul Posting</td>
-                                    <td><input type='text' name='Judul' /></td>
+                                    <td>Nama </td>
+                                    <td><input type='text' name='nama' value="{{$user->name}}"/></td>
                                 </tr>
                                 <br>
 
                                 <tr>
-                                    <td>Caption</td>
+                                    <td>Email </td>
                                     <br>
-                                    <td>
-                                        <input type='text' name='Caption' />
+                                    <td>       <input type='text' name='email' value="{{$user->email}}"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Description</td>
+                                    <br>
+                                    <td>       <input type='text' name='description' value="{{$profile->description}}"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        File : <input type="file" id="fileUpload" name="fileUpload"/>
+                                        Foto : <input type="file" id="fotoProfil" name="fotoProfil"/>
                                     </td>
 
                                 </tr>
-
-
 
                                 <tr>
                                     <td colspan = '2'><br>
                                         <input type = 'submit' value = "Upload"/>
                                     </td>
+
                                 </tr>
+
+                                <tr><img style="max-width: 100%" src=""></tr>
                             </table>
 
                         </form>
